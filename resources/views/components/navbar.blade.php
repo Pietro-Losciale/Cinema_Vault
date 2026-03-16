@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ route('home') }}">Cinema Vault</a>
@@ -12,17 +14,38 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        
+
+        <li class="nav-item dropdown d-flex align-items-center">
+
+            <a class="nav-link" href="{{ route('genres') }}">
+                Genres
+            </a>
+
+            <a class="nav-link dropdown-toggle dropdown-toggle-split"
+              href="#"
+              id="genresDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+
+                @foreach ($genres as $genre)
+
+                <li>
+                    <a class="dropdown-item" href="{{ route('genre', $genre['id']) }}">
+                        {{ $genre['name'] }}
+                    </a>
+                </li>
+
+                @endforeach
+
+            </ul>
+
         </li>
+        
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>

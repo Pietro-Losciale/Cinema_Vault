@@ -8,6 +8,15 @@
         </div>
     </div>
 
+
+    @if(isset($genreName))
+
+        <div class="container mt-4 text-center">
+            <h2>🎬 {{ $genreName }} Movies</h2>
+        </div>
+
+   @endif 
+
     <div class="row">
 
 
@@ -20,7 +29,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $movie['title'] }}</h5>
                     <p class="card-text">{{ $movie['release_date'] }}</p>
-                    <a href="#" class="btn btn-primary">Dettagli</a>
+                    <p class="card-text">⭐ {{ $movie['vote_average'] }}</p>
+                    <a href="/movie/{{ $movie['id'] }}" class="btn btn-primary">Details</a>
                 </div>
             </div>  
             

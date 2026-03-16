@@ -14,13 +14,87 @@ $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
     'api_key' => config('services.tmdb.key')
 ]);
 
+
+
 $movies = $response->json()['results'];
+$genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
+    'api_key' => config('services.tmdb.key')
+]);     
 
-return view('home', compact('movies'));
+$genres = $genresResponse->json()['genres'];
 
-// compact= ['movies' => $movies]
+return view('home', compact('movies', 'genres'));
+
+// compact= ['movies' => $movies, 'genres' => $genres]
+
+
 
 }
+
+
+public function movieDetail($id){
+
+    $response = Http::get("https://api.themoviedb.org/3/movie/$id", [
+        'api_key' => config('services.tmdb.key')
+    ]);
+
+    $movie = $response->json();
+
+    $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
+    'api_key' => config('services.tmdb.key')
+    ]);
+
+    $genres = $genresResponse->json()['genres'];
+
+    return view('detail', compact('movie','genres'));
+
+    
+   
+}
+
+
+
+public function genres(){
+
+    $response = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
+        'api_key' => config('services.tmdb.key')
+    ]);
+
+    $genres = $response->json()['genres'];
+
+    return view('genres', compact('genres'));
+}
+
+
+public function genre($id){
+
+    $response = Http::get('https://api.themoviedb.org/3/discover/movie', [
+    'api_key' => config('services.tmdb.key'),
+    'with_genres' => $id
+   ]);
+
+    $movies = $response->json()['results'];
+
+    $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
+        'api_key' => config('services.tmdb.key')
+    ]);
+
+    $genres = $genresResponse->json()['genres'];
+
+
+    // trovare il nome del genere
+    $genreName = collect($genres)->firstWhere('id', $id)['name'];
+
+    return view('home', compact('movies','genres','genreName'));
+
+    
+}
+
+
+
+
+
+
 
 
 }
