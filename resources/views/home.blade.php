@@ -30,7 +30,7 @@
                     <h5 class="card-title">{{ $movie['title'] }}</h5>
                     <p class="card-text">{{ $movie['release_date'] }}</p>
                     <p class="card-text">⭐ {{ $movie['vote_average'] }}</p>
-                    <a href="/movie/{{ $movie['id'] }}" class="btn btn-primary">Details</a>
+                    <a href="/movie/{{ $movie['id'] }}" class="btn btn-warning text-black">Details</a>
                 </div>
             </div>  
             
