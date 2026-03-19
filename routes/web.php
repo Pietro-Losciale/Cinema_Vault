@@ -11,3 +11,7 @@ Route::get('/movie/{id}', [PublicController::class, 'movieDetail']);
 
 Route::get('/genres', [PublicController::class, 'genres'])->name('genres');
 Route::get('/genre/{id}', [PublicController::class, 'genre'])->name('genre');
+
+//search route//
+
+Route::get('/search', [PublicController::class, 'search'])->name('search');

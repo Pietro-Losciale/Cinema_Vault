@@ -85,15 +85,30 @@ public function genre($id){
     // trovare il nome del genere
     $genreName = collect($genres)->firstWhere('id', $id)['name'];
 
-    return view('home', compact('movies','genres','genreName'));
-
-    
+    return view('home', compact('movies','genres','genreName'));  
 }
 
 
 
 
 
+// funzione ricerca film dalla navbar//
+
+
+
+public function search(Request $request){
+
+    $query = $request->input('query');
+
+    $response = Http::get('https://api.themoviedb.org/3/search/movie', [
+        'api_key' => config('services.tmdb.key'),
+        'query' => $query
+    ]);
+
+    $movies = $response->json()['results'];
+
+    return view('home', compact('movies', 'query'));
+}
 
 
 

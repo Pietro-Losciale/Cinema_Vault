@@ -1,8 +1,18 @@
 
 
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{ route('home') }}">Cinema Vault</a>
+
+
+
+    {{-- <a class="navbar-brand" href="{{ route('home') }}">Cinema Vault</a> --}}
+    <a class="navbar-brand" href="{{ route('home') }}">
+     <img src="/images/logo.png" alt="CinemaVault logo" >
+    </a>
+
+
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,9 +60,13 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+
+      {{-- search bar funzionante --}}
+      <form class="d-flex" role="search" method="GET" action="{{ route('search') }}">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search a movie..." aria-label="Search"/>
+        <button class="btn btn-outline-dark btn-custom align-items-center d-flex" type="submit">
+          <i class="fa-solid fa-magnifying-glass me-1"></i>
+          Search</button>
       </form>
     </div>
   </div>

@@ -9,13 +9,30 @@
     </div>
 
 
-    @if(isset($genreName))
+        {{-- risultato query ricerca film  --}}
 
-        <div class="container mt-4 text-center">
-            <h2>🎬 {{ $genreName }} Movies</h2>
+     @if(isset($query))
+    <div class="row">
+        <div class="col-12 mt-4 text-center">
+            <h2>🔍 Results for "{{ $query }}"</h2>
         </div>
+    </div>
+    @endif
 
-   @endif 
+
+
+
+
+
+
+
+     @if(isset($genreName))
+            <div class="row">
+                <div class="col-12 text-center mt-4">
+                    <h2>🎬 {{ $genreName }} Movies</h2>
+                </div>
+            </div>
+    @endif
 
     <div class="row">
 
