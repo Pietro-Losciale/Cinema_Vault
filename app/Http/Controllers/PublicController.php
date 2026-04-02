@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Review;
 
 class PublicController extends Controller
 {
@@ -45,8 +46,22 @@ public function movieDetail($id){
     ]);
 
     $genres = $genresResponse->json()['genres'];
+    $reviews = Review::where('movie_id', $id)
+    ->with('user')
+    ->latest()
+    ->get();
+    
+    $userReview = null;
 
-    return view('detail', compact('movie','genres'));
+    if (auth()->check()) {
+        $userReview = Review::where('movie_id', $id)
+            ->where('user_id', auth()->id())
+            ->first();
+    }
+
+
+     
+    return view('detail', compact('movie','genres', 'reviews','userReview'));
 
     
    

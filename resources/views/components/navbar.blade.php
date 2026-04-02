@@ -21,10 +21,41 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        
+
+
+        {{-- AUTH DROPDOWN -snippet per Fortify--}}
+  @auth
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          Hi, {{ Auth::user()->name }}
+      </a>
+      <ul class="dropdown-menu">
+          <li>
+              <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button class="dropdown-item">Logout</button>
+              </form>
+          </li>
+      </ul>
+  </li>
+  @else
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          Hi, Guest
+      </a>
+      <ul class="dropdown-menu">
+          <li>
+              <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+          </li>
+          <li>
+              <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+          </li>
+      </ul>
+  </li>
+  @endauth
+
+
+       
 
         <li class="nav-item dropdown d-flex align-items-center">
 
@@ -56,18 +87,28 @@
 
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+       
+        
 
-      {{-- search bar funzionante --}}
-      <form class="d-flex" role="search" method="GET" action="{{ route('search') }}">
-        <input class="form-control me-2" type="search" name="query" placeholder="Search a movie..." aria-label="Search"/>
-        <button class="btn btn-outline-dark btn-custom align-items-center d-flex" type="submit">
-          <i class="fa-solid fa-magnifying-glass me-1"></i>
-          Search</button>
-      </form>
+
+
+
+
+     
+  
+
+
+
+
+      
     </div>
+        {{-- search bar funzionante --}}
+                    <form class="d-flex " role="search" method="GET" action="{{ route('search') }}">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search a movie..." aria-label="Search"/>
+                    <button class="btn btn-outline-dark btn-custom align-items-center d-flex" type="submit">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i>
+                        Search</button>
+                    </form>
+
   </div>
 </nav>
