@@ -29,14 +29,33 @@
       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Hi, {{ Auth::user()->name }}
       </a>
-      <ul class="dropdown-menu">
-          <li>
-              <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <button class="dropdown-item">Logout</button>
-              </form>
-          </li>
-      </ul>
+
+
+
+
+
+<ul class="dropdown-menu">
+
+    <li>
+        <a class="dropdown-item" href="{{ route('reviews.my') }}">
+            My Reviews
+        </a>
+    </li>
+
+    <li><hr class="dropdown-divider"></li>
+
+    <li>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="dropdown-item">Logout</button>
+        </form>
+    </li>
+
+</ul>
+
+
+
+
   </li>
   @else
   <li class="nav-item dropdown">
