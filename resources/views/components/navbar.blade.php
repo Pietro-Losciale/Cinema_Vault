@@ -90,7 +90,7 @@
               aria-expanded="false">
             </a>
 
-            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+            <ul class="dropdown-menu genres-dropdown" aria-labelledby="genresDropdown" style="max-height: 300px; overflow-y: auto;">
 
                 @foreach ($genres as $genre)
 

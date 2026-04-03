@@ -39,3 +39,143 @@
     background-color: rgba(255,255,255,0.80);
     color: black;
 }
+
+
+/* dropdown menu generi */
+
+.genres-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.dropdown-item {
+    border-radius: 6px;
+    transition: 0.15s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(246, 211, 101, 0.25);
+    color: black;
+}
+
+.genres-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.genres-dropdown::-webkit-scrollbar-thumb {
+    background-color: rgba(246, 211, 101, 0.7);
+    border-radius: 10px;
+}
+
+.genres-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* customizzazione footer */
+
+.footer-custom {
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    color: black;
+}
+
+.footer-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-icon {
+    margin-left: 10px;
+    font-size: 18px;
+    color: black;
+    transition: 0.2s ease;
+}
+
+.footer-icon:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    background-color: rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+
+
+/* stile delle card, homepage */
+
+.card {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* IMMAGINE */
+.card-img-top {
+    height: 360px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card-img-top:hover {
+    opacity: 0.85;
+}
+
+/* CONTENUTO */
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TITOLO */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* TESTI SECONDARI */
+.card-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+/* BOTTONE */
+.card .btn {
+    border-radius: 10px;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+/* BUTTON DETAILS UPGRADE */
+
+.card .btn-warning {
+    padding: 8px 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.card .btn-warning:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(246, 211, 101, 0.4);
+}

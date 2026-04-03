@@ -18,6 +18,11 @@ $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
 
 
 $movies = $response->json()['results'];
+
+foreach ($movies as &$movie) {
+    $movie['cv_average'] = Review::where('movie_id', $movie['id'])->avg('vote');
+}
+
 $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
     'api_key' => config('services.tmdb.key')
 ]);     

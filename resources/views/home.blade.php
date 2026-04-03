@@ -40,14 +40,38 @@
         @foreach ($movies as $movie)
          <div class="col-md-3 mb-4">
 
-            <div class="card h-100">
-                <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" class="card-img-top" alt="film poster">
+            <div class="card h-100 d-flex flex-column">
+                <a href="{{ route('movie.show', $movie['id']) }}">
+                    <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" class="card-img-top" alt="film poster">
+                </a>
                 
-                <div class="card-body">
+                
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ $movie['title'] }}</h5>
-                    <p class="card-text">{{ $movie['release_date'] }}</p>
-                    <p class="card-text">⭐ {{ $movie['vote_average'] }}</p>
-                    <a href="/movie/{{ $movie['id'] }}" class="btn btn-warning text-black">Details</a>
+            
+
+                    <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">
+                        Release: {{ \Carbon\Carbon::parse($movie['release_date'])->format('d M Y') }}
+                    </p>
+
+                   <p class="card-text mb-1">
+                        ⭐ TMDB: {{ number_format($movie['vote_average'], 1) }}
+                    </p>
+
+                    @if($movie['cv_average'])
+                        <p class="card-text text-warning mb-2">
+                            🎬 CinemaVault: {{ number_format($movie['cv_average'], 1) }}
+                        </p>
+                    @else
+                        <p class="card-text  mb-2">
+                            🎬 CinemaVault: no reviews
+                        </p>
+                    @endif
+                                        
+
+
+
+                    <a href="{{ route('movie.show', $movie['id']) }}" class="btn btn-warning text-black mt-auto">Details</a>
                 </div>
             </div>  
             
