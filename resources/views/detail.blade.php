@@ -14,6 +14,18 @@
 
             <h1>{{ $movie['title'] }}</h1>
 
+            {{-- logica show media delle recensioni --}}
+          @if($averageVote)
+                <p class="text-warning mt-2">
+                    ⭐ {{ number_format($averageVote, 1) }}/10 
+                    ({{ $reviewsCount }} {{ $reviewsCount === 1 ? 'review' : 'reviews' }})
+                </p>
+                @else
+                <p class="text-muted mt-2">
+                    No ratings yet
+                </p>
+            @endif
+
             <p class="mt-2">
             @foreach($movie['genres'] as $genre)
                 <span class="badge bg-warning text-black me-1">

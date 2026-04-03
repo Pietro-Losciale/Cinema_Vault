@@ -50,6 +50,20 @@ public function movieDetail($id){
     ->with('user')
     ->latest()
     ->get();
+
+    // media delle recensioni
+
+    $averageVote = Review::where('movie_id', $id)->avg('vote');
+
+    // numero di recensioni per film
+
+    $reviewsCount = Review::where('movie_id', $id)->count();
+
+
+
+
+
+
     
     $userReview = null;
 
@@ -61,7 +75,7 @@ public function movieDetail($id){
 
 
      
-    return view('detail', compact('movie','genres', 'reviews','userReview'));
+    return view('detail', compact('movie','genres', 'reviews','userReview', 'averageVote', 'reviewsCount'));
 
     
    
