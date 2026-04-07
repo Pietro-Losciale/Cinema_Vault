@@ -19,9 +19,9 @@ $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
 
 $movies = $response->json()['results'];
 
-foreach ($movies as &$movie) {
-    $movie['cv_average'] = Review::where('movie_id', $movie['id'])->avg('vote');
-}
+
+
+$this->attachCvAverage($movies);
 
 $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
     'api_key' => config('services.tmdb.key')
@@ -109,6 +109,8 @@ public function genre($id){
 
     $movies = $response->json()['results'];
 
+    $this->attachCvAverage($movies);
+
     $genresResponse = Http::get('https://api.themoviedb.org/3/genre/movie/list', [
         'api_key' => config('services.tmdb.key')
     ]);
@@ -141,15 +143,25 @@ public function search(Request $request){
 
     $movies = $response->json()['results'];
 
-    // codice per integrare la media delle recensioni nei risultati di ricerca
-    foreach ($movies as &$movie) {
-    $movie['cv_average'] = Review::where('movie_id', $movie['id'])->avg('vote');
-    }
+    $this->attachCvAverage($movies);
 
     return view('home', compact('movies', 'query'));
 }
 
 
+private function attachCvAverage(&$movies)
+{
+    $movieIds = collect($movies)->pluck('id');
+
+    $averages = Review::selectRaw('movie_id, AVG(vote) as avg_vote')
+        ->whereIn('movie_id', $movieIds)
+        ->groupBy('movie_id')
+        ->pluck('avg_vote', 'movie_id');
+
+    foreach ($movies as &$movie) {
+        $movie['cv_average'] = $averages[$movie['id']] ?? null;
+    }
+}
 
 }
 
