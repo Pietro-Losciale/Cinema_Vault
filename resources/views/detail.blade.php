@@ -54,7 +54,7 @@
 
                 @auth
 
-                    @if(!$userReview)
+                    @if(!$userReview && !session('success'))
 
                         <h4 class="text-white">Write a review</h4>
 
@@ -87,11 +87,11 @@
                         </form>
 
                     @else
-
-                        <div class="alert alert-info">
-                            You already wrote a review for this movie.
-                        </div>
-
+                        @if(!session('success'))
+                            <div class="alert alert-info">
+                                You already wrote a review for this movie.
+                            </div>
+                        @endif
                     @endif
 
                 @else
@@ -132,6 +132,10 @@
                         <p class="text-white">No reviews yet.</p>
                     @endforelse
                 @endisset
+
+                <div class="mt-3">
+                    {{ $reviews->links() }}
+                </div>
 
             </div>
 

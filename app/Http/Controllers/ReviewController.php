@@ -18,7 +18,7 @@ class ReviewController extends Controller
         'content' => $request->content,
     ]);
 
-    return back();
+    return back()->with('success', 'Review posted successfully!');;
 }
 
 

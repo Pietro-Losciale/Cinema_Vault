@@ -179,3 +179,44 @@
     transform: translateY(-1px);
     box-shadow: 0 6px 15px rgba(246, 211, 101, 0.4);
 }
+
+
+/* PAGINAZIONE DARK CINEMAVAULT */
+
+.pagination {
+    --bs-pagination-bg: transparent;
+    --bs-pagination-border-color: rgba(255,255,255,0.1);
+    --bs-pagination-color: rgba(255,255,255,0.7);
+    --bs-pagination-hover-bg: rgba(255,255,255,0.05);
+    --bs-pagination-hover-color: #fff;
+}
+
+/* base */
+.page-link {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    margin: 0 4px;
+    transition: all 0.2s ease;
+}
+
+/* hover */
+.page-link:hover {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+}
+
+/* attivo (elegante, non tamarro) */
+.page-item.active .page-link {
+    background: rgba(246, 211, 101, 0.15);
+    color: #f6d365;
+    border: 1px solid rgba(246, 211, 101, 0.4);
+    font-weight: 600;
+}
+
+/* frecce */
+.page-link[rel="prev"],
+.page-link[rel="next"] {
+    font-weight: 500;
+}

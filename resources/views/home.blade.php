@@ -50,7 +50,7 @@
                     <h5 class="card-title">{{ $movie['title'] }}</h5>
             
 
-                    <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">
+                    <p class="card-text  mb-2" style="font-size: 0.9rem;">
                         Release: {{ \Carbon\Carbon::parse($movie['release_date'])->format('d M Y') }}
                     </p>
 

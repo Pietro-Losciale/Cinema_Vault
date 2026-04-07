@@ -54,7 +54,7 @@ public function movieDetail($id){
     $reviews = Review::where('movie_id', $id)
     ->with('user')
     ->latest()
-    ->get();
+    ->paginate(5);
 
     // media delle recensioni
 
@@ -140,6 +140,11 @@ public function search(Request $request){
     ]);
 
     $movies = $response->json()['results'];
+
+    // codice per integrare la media delle recensioni nei risultati di ricerca
+    foreach ($movies as &$movie) {
+    $movie['cv_average'] = Review::where('movie_id', $movie['id'])->avg('vote');
+    }
 
     return view('home', compact('movies', 'query'));
 }
